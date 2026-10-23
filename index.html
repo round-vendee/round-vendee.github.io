@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- @roundMe — page d'accueil hébergée sur GitHub Pages (DEC-40). Porte le nom et l'icône pour l'écran d'accueil,
+       et affiche l'application Apps Script dans un cadre. Version 0.3.0 du 23/10/2026. -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>@roundMe</title>
+  <meta name="description" content="Les sorties des 15 prochains jours en Vendée, sur une carte.">
+  <meta name="theme-color" content="#0d47a1">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icone-32.png">
+  <link rel="apple-touch-icon" href="icone-180.png">
+  <meta name="apple-mobile-web-app-title" content="@roundMe">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <style>
+    html, body { margin: 0; height: 100%; background: #0d47a1; }
+    iframe { display: block; width: 100%; height: 100vh; height: 100dvh; border: 0; background: #f5f7fa; }
+  </style>
+</head>
+<body>
+  <iframe id="appli" title="@roundMe" allow="geolocation; clipboard-write; web-share"></iframe>
+  <noscript><p style="color:#fff;padding:16px">Activez JavaScript pour utiliser @roundMe.</p></noscript>
+  <script>
+    // Adresse de l'application (publication unique, voir CLAUDE.md). Les paramètres de l'adresse sont transmis (liens partagés).
+    var APPLICATION = 'https://script.google.com/macros/s/AKfycbzgP6vzOSq9Afkl0yz5cgIAwCRxgjwyGkfyMlgZb4nO6Lg-S8adkOYwFCU5MZbPqOCwSw/exec';
+    document.getElementById('appli').src = APPLICATION + window.location.search;
+    // Le service worker rend la page « installable » (icône sur l'écran d'accueil) ; il ne met rien en cache.
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+  </script>
+</body>
+</html>
